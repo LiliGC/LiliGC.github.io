@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portafolio | Liliana Garmendia</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #6c25c9;
+            --primary-dark: #410e63;
+            --primary-light: #8240f3;
+            --secondary: #9d48e2;
+            --accent: #43bff0;
+            --text: #2f2c2c;
+            --text-light: #666;
+            --bg-light: #fafafa;
+            --bg-lighter: #f4f4f4;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        /* Navegación */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: var(--primary-dark);
+            padding: 1rem 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        nav a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0.5rem 1.25rem;
+            border-radius: 8px;
+            transition: background 0.3s;
+        }
+
+        nav a:hover {
+            background: var(--secondary);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 6rem 2rem 4rem;
+            background: var(--white);
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .hero-image {
+            width: 100%;
+            aspect-ratio: 1;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 10px 30px rgba(108, 37, 201, 0.2);
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            color: var(--text);
+        }
+
+        .hero-content h2 {
+            font-size: 1.5rem;
+            color: var(--secondary);
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .hero-content p {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: var(--text-light);
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--primary-light);
+            color: var(--white);
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            margin-top: 1rem;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(108, 37, 201, 0.3);
+        }
+
+        .btn:hover {
+            background: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(67, 191, 240, 0.4);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .social-links a {
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            color: var(--white);
+            font-size: 1.5rem;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-5px);
+        }
+
+        .social-links .linkedin { background: #006599; }
+        .social-links .github { background: #333; }
+        .social-links .email { background: #DA2713; }
+
+        /* Secciones */
+        section {
+            padding: 5rem 2rem;
+        }
+
+        .section-alt {
+            background: var(--bg-light);
+        }
+
+        .section-light {
+            background: var(--bg-lighter);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: var(--text-light);
+            margin-bottom: 3rem;
+        }
+
+        /* Grid de Experiencia */
+        .experience-grid {
+            display: grid;
+            gap: 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .experience-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            text-align: left;
+            transition: transform 0.3s;
+        }
+
+        .experience-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .experience-card h4 {
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .experience-card strong {
+            color: var(--text);
+        }
+
+        /* Grid de Habilidades */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-card {
+            background: var(--white);
+            padding: 2.5rem 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            text-align: center;
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 25px rgba(108, 37, 201, 0.15);
+        }
+
+        .skill-icon {
+            font-size: 4rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .skill-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        .skill-card p {
+            color: var(--text-light);
+            flex-grow: 1;
+        }
+
+        /* Grid de Certificaciones */
+        .certifications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .cert-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            text-align: center;
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .cert-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(108, 37, 201, 0.15);
+        }
+
+        .cert-icon {
+            font-size: 3.5rem;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+
+        .cert-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        .cert-card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        /* Grid de Proyectos */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 25px rgba(108, 37, 201, 0.15);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .project-image-placeholder {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, var(--primary-light), var(--accent));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: var(--white);
+        }
+
+        .project-content {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--text);
+        }
+
+        .project-link {
+            color: var(--primary);
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            display: inline-block;
+        }
+
+        .project-content p {
+            color: var(--text-light);
+            margin-bottom: 1rem;
+            flex-grow: 1;
+        }
+
+        .project-tech {
+            font-weight: 600;
+            color: var(--text);
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary-dark);
+            color: var(--white);
+            padding: 2rem;
+            text-align: center;
+        }
+
+        footer p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        footer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-image {
+                max-width: 250px;
+                margin: 0 auto;
+            }
+
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .hero-content h2 {
+                font-size: 1.2rem;
+            }
+
+            .social-links {
+                justify-content: center;
+            }
+
+            nav ul {
+                gap: 0.5rem;
+                flex-wrap: wrap;
+            }
+
+            nav a {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.9rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            .skills-grid,
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        section {
+            scroll-margin-top: 60px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navegación -->
+    <nav>
+        <ul>
+            <li><a href="#inicio" data-es="Inicio" data-en="Home">Inicio</a></li>
+            <li><a href="#experiencia" data-es="Experiencia" data-en="Experience">Experiencia</a></li>
+            <li><a href="#tecnologias" data-es="Habilidades" data-en="Skills">Habilidades</a></li>
+            <li><a href="#certificaciones" data-es="Certificaciones" data-en="Certifications">Certificaciones</a></li>
+            <li><a href="#proyectos" data-es="Proyectos" data-en="Projects">Proyectos</a></li>
+            <li>
+                <button id="langToggle" onclick="toggleLanguage()" style="background: none; border: 2px solid var(--white); color: var(--white); padding: 0.5rem 1rem; border-radius: 8px; cursor: pointer; font-weight: 600; transition: all 0.3s;">
+                    <i class="fas fa-globe"></i> EN
+                </button>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="hero">
+        <div class="hero-container">
+            <img src="images/foto2.jpg" alt="Liliana Garmendia" class="hero-image">
+            <div class="hero-content">
+                <h1>Liliana Garmendia</h1>
+                <h2 data-es="Data Scientist | Bioquímica en Transición a Tech" data-en="Data Scientist | Biochemist Pivoting to Tech">Data Scientist | Bioquímica en Transición a Tech</h2>
+                <p data-es="¡Hola! Soy Bioquímica en transición hacia Data Science y Machine Learning. Desde 2022 he completado bootcamps intensivos en desarrollo Full Stack Python, Ciencia de Datos y Machine Learning, además del programa <strong>AWS re/Start</strong> y múltiples certificaciones AWS." data-en="Hi! I'm a Biochemist transitioning to Data Science and Machine Learning. Since 2022, I've completed intensive bootcamps in Full Stack Python development, Data Science, and Machine Learning, plus the <strong>AWS re/Start</strong> program and multiple AWS certifications.">¡Hola! Soy Bioquímica en transición hacia Data Science y Machine Learning. Desde 2022 he completado bootcamps intensivos en desarrollo Full Stack Python, Ciencia de Datos y Machine Learning, además del programa <strong>AWS re/Start</strong> y múltiples certificaciones AWS.</p>
+                <p data-es="Combino mi formación científica con habilidades técnicas para desarrollar soluciones de datos de extremo a extremo: desde el análisis exploratorio hasta el despliegue de modelos. Actualmente formo parte del equipo de coordinación de <strong>Python Chile</strong>." data-en="I combine my scientific background with technical skills to develop end-to-end data solutions: from exploratory analysis to model deployment. Currently part of the <strong>Python Chile</strong> coordination team.">Combino mi formación científica con habilidades técnicas para desarrollar soluciones de datos de extremo a extremo: desde el análisis exploratorio hasta el despliegue de modelos. Actualmente formo parte del equipo de coordinación de <strong>Python Chile</strong>, donde participo en el desarrollo del sitio web de PyCon Chile.</p>
+                <a href="images/cv_liliana_garmendia_es.pdf" id="cvLink" class="btn" data-es="Mi CV" data-en="My Resume">Mi CV</a>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/liliana-garmendia-c" class="linkedin" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://github.com/LiliGC" class="github" aria-label="Github" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="mailto:liliana.garmendia.c@gmail.com" class="email" aria-label="Email">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experiencia -->
+    <section id="experiencia" class="section-light">
+        <div class="container">
+            <h2 data-es="Experiencia y Colaboraciones" data-en="Experience and Collaborations">Experiencia y Colaboraciones</h2>
+            <p class="section-subtitle" data-es="Mi trayectoria desde la bioquímica hasta la tecnología, destacando proyectos prácticos y colaboraciones." data-en="My journey from biochemistry to technology, highlighting practical projects and collaborations.">Mi trayectoria desde la bioquímica hasta la tecnología, destacando proyectos prácticos y colaboraciones.</p>
+            <div class="experience-grid">
+                <div class="experience-card">
+                    <h4 data-es="Proyectos de Machine Learning" data-en="Machine Learning Projects">Proyectos de Machine Learning</h4>
+                    <p><strong data-es="2024 - Presente | Desarrollo Independiente" data-en="2024 - Present | Independent Development">2024 - Presente | Desarrollo Independiente</strong></p>
+                    <p data-es="Desarrollo de soluciones de datos de extremo a extremo, desde el análisis y modelado hasta el despliegue. Mi trabajo incluye la creación de modelos predictivos (Scikit-learn), el desarrollo de APIs (FastAPI) y despliegue con Docker. Actualmente completando bootcamp intensivo en Machine Learning." data-en="End-to-end data solutions development, from analysis and modeling to deployment. My work includes creating predictive models (Scikit-learn), developing APIs (FastAPI), and deployment with Docker. Currently completing intensive Machine Learning bootcamp.">Desarrollo de soluciones de datos de extremo a extremo, desde el análisis y modelado hasta el despliegue. Mi trabajo incluye la creación de modelos predictivos (Scikit-learn), el desarrollo de APIs (FastAPI) y despliegue con Docker. Actualmente completando bootcamp intensivo en Machine Learning.</p>
+                </div>
+                <div class="experience-card">
+                    <h4 data-es="Coordinadora - Python Chile" data-en="Coordinator - Python Chile">Coordinadora - Python Chile</h4>
+                    <p><strong data-es="2024 - Presente" data-en="2024 - Present">2024 - Presente</strong></p>
+                    <p data-es="Miembro del equipo de coordinación de la comunidad Python Chile y del equipo de desarrollo del sitio web oficial de <strong>PyCon Chile</strong> (Next.js, React, TypeScript). Colaboro en la organización de eventos y en iniciativas para fortalecer la comunidad Python en Chile." data-en="Member of the Python Chile community coordination team and the development team for the official <strong>PyCon Chile</strong> website (Next.js, React, TypeScript). I collaborate in organizing events and initiatives to strengthen the Python community in Chile.">Miembro del equipo de coordinación de la comunidad Python Chile y del equipo de desarrollo del sitio web oficial de <strong>PyCon Chile</strong> (Next.js, React, TypeScript). Colaboro en la organización de eventos y en iniciativas para fortalecer la comunidad Python en Chile.</p>
+                </div>
+                <div class="experience-card">
+                    <h4 data-es="Desarrolladora Full Stack Python" data-en="Full Stack Python Developer">Desarrolladora Full Stack Python</h4>
+                    <p><strong data-es="2022 - 2023 | Freelance" data-en="2022 - 2023 | Freelance">2022 - 2023 | Freelance</strong></p>
+                    <p data-es="Creación de aplicaciones web completas para clientes, utilizando <strong>Django</strong> y <strong>MySQL</strong>. Responsable del diseño de la base de datos, la lógica del backend y la implementación de interfaces de usuario, lo que me dio una base sólida en el ciclo de vida del desarrollo de software." data-en="Creation of complete web applications for clients using <strong>Django</strong> and <strong>MySQL</strong>. Responsible for database design, backend logic, and user interface implementation, which gave me a solid foundation in the software development lifecycle.">Creación de aplicaciones web completas para clientes, utilizando <strong>Django</strong> y <strong>MySQL</strong>. Responsable del diseño de la base de datos, la lógica del backend y la implementación de interfaces de usuario, lo que me dio una base sólida en el ciclo de vida del desarrollo de software.</p>
+                </div>
+                <div class="experience-card">
+                    <h4 data-es="Bioquímica - Investigación Clínica" data-en="Biochemist - Clinical Research">Bioquímica - Investigación Clínica</h4>
+                    <p><strong data-es="Pontificia Universidad Católica de Chile" data-en="Pontifical Catholic University of Chile">Pontificia Universidad Católica de Chile</strong></p>
+                    <p data-es="Investigadora en laboratorios de Ginecología/Obstetricia y Nefrología. Responsable del trabajo experimental completo: PCR, Western Blot, cultivos celulares, transfecciones, inmunofluorescencia, extracción de proteínas y ADN, y microscopía electrónica en modelos humanos y animales. Contribuí a investigaciones presentadas en el <strong>Congreso Mundial de Nefrología</strong> y el <strong>Congreso Americano de Nefrología</strong>, y presenté personalmente en congresos nacionales. Esta experiencia desarrolló mi pensamiento analítico riguroso y habilidades para diseñar experimentos y resolver problemas complejos, fundamentales en mi trabajo actual con datos." data-en="Researcher in Gynecology/Obstetrics and Nephrology laboratories. Responsible for complete experimental work: PCR, Western Blot, cell cultures, transfections, immunofluorescence, protein and DNA extraction, and electron microscopy in human and animal models. Contributed to research presented at the <strong>World Congress of Nephrology</strong> and the <strong>American Society of Nephrology Congress</strong>, and presented personally at national conferences. This experience developed my rigorous analytical thinking and skills in experimental design and complex problem-solving, fundamental in my current data work.">Investigadora en laboratorios de Ginecología/Obstetricia y Nefrología. Responsable del trabajo experimental completo: PCR, Western Blot, cultivos celulares, transfecciones, inmunofluorescencia, extracción de proteínas y ADN, y microscopía electrónica en modelos humanos y animales. Contribuí a investigaciones presentadas en el <strong>Congreso Mundial de Nefrología</strong> y el <strong>Congreso Americano de Nefrología</strong>, y presenté personalmente en congresos nacionales. Esta experiencia desarrolló mi pensamiento analítico riguroso y habilidades para diseñar experimentos y resolver problemas complejos, fundamentales en mi trabajo actual con datos.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comunidad y Programas -->
+    <section id="comunidad" class="wrapper style2">
+        <div class="container">
+            <header>
+                <h2 data-es="Comunidad y Programas" data-en="Community and Programs">Comunidad y Programas</h2>
+                <p class="section-subtitle" data-es="Participación activa en la comunidad tecnológica y programas de desarrollo profesional." data-en="Active participation in tech community and professional development programs.">Participación activa en la comunidad tecnológica y programas de desarrollo profesional.</p>
+            </header>
+            <div class="row aln-center">
+                <div class="col-10 col-12-medium">
+                    <div class="box style1" style="text-align: left; margin-bottom: 2em;">
+                        <h4 data-es="AWS All Builders Grant - re:Invent 2023" data-en="AWS All Builders Grant - re:Invent 2023">AWS All Builders Grant - re:Invent 2023</h4>
+                        <p data-es="Seleccionada entre miles de aplicantes para asistir al evento de tecnología cloud más grande del mundo en Las Vegas. Participación en sesiones técnicas avanzadas, networking con líderes de la industria y acceso a las últimas innovaciones en AWS." data-en="Selected among thousands of applicants to attend the world's largest cloud technology event in Las Vegas. Participation in advanced technical sessions, networking with industry leaders, and access to the latest AWS innovations.">Seleccionada entre miles de aplicantes para asistir al evento de tecnología cloud más grande del mundo en Las Vegas. Participación en sesiones técnicas avanzadas, networking con líderes de la industria y acceso a las últimas innovaciones en AWS.</p>
+                    </div>
+                    <div class="box style1" style="text-align: left; margin-bottom: 2em;">
+                        <h4>Outreachy</h4>
+                        <p data-es="Participación en dos periodos de contribución (2023 y 2024) a proyectos open source. Outreachy es un programa internacional altamente competitivo que apoya la diversidad en tecnología a través de pasantías pagas en proyectos de código abierto." data-en="Participation in two contribution periods (2023 and 2024) to open source projects. Outreachy is a highly competitive international program that supports diversity in technology through paid internships in open source projects.">Participación en dos periodos de contribución (2023 y 2024) a proyectos open source. Outreachy es un programa internacional altamente competitivo que apoya la diversidad en tecnología a través de pasantías pagas en proyectos de código abierto.</p>
+                    </div>
+                    <div class="box style1" style="text-align: left; margin-bottom: 2em;">
+                        <h4 data-es="Mentoría y Desarrollo de Comunidad" data-en="Mentorship and Community Development">Mentoría y Desarrollo de Comunidad</h4>
+                        <p data-es="Participación activa en programas de mentoría y comunidades tecnológicas: <strong>AWS She Builds Latam</strong>, <strong>Women Who Code</strong>, <strong>Cajigo</strong>, <strong>Mujeres x Talento Digital</strong>, <strong>Womaker Code</strong>, <strong>IT for Girls</strong> (NTT DATA y Claroty). Compromiso con el crecimiento de mujeres en tecnología y la creación de redes de apoyo profesional." data-en="Active participation in mentorship programs and tech communities: <strong>AWS She Builds Latam</strong>, <strong>Women Who Code</strong>, <strong>Cajigo</strong>, <strong>Mujeres x Talento Digital</strong>, <strong>Womaker Code</strong>, <strong>IT for Girls</strong> (NTT DATA and Claroty). Commitment to the growth of women in technology and creating professional support networks.">Participación activa en programas de mentoría y comunidades tecnológicas: <strong>AWS She Builds Latam</strong>, <strong>Women Who Code</strong>, <strong>Cajigo</strong>, <strong>Mujeres x Talento Digital</strong>, <strong>Womaker Code</strong>, <strong>IT for Girls</strong> (NTT DATA y Claroty). Compromiso con el crecimiento de mujeres en tecnología y la creación de redes de apoyo profesional.</p>
+                    </div>
+                    <div class="box style1" style="text-align: left;">
+                        <h4 data-es="Formación Complementaria" data-en="Complementary Training">Formación Complementaria</h4>
+                        <p data-es="Bootcamps completados: <strong>Full Stack Python</strong>, <strong>Data Science</strong>, <strong>Machine Learning</strong> (en curso). Programas adicionales: <strong>AWS re/Start</strong>, <strong>Oracle ONE + Alura Latam</strong>. Certificaciones AWS: Cloud Practitioner, AI Practitioner, Solutions Architect Associate." data-en="Completed bootcamps: <strong>Full Stack Python</strong>, <strong>Data Science</strong>, <strong>Machine Learning</strong> (in progress). Additional programs: <strong>AWS re/Start</strong>, <strong>Oracle ONE + Alura Latam</strong>. AWS Certifications: Cloud Practitioner, AI Practitioner, Solutions Architect Associate.">Bootcamps completados: <strong>Full Stack Python</strong>, <strong>Data Science</strong>, <strong>Machine Learning</strong> (en curso). Programas adicionales: <strong>AWS re/Start</strong>, <strong>Oracle ONE + Alura Latam</strong>. Certificaciones AWS: Cloud Practitioner, AI Practitioner, Solutions Architect Associate.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tecnologías -->
+    <section id="tecnologias" class="section-alt">
+        <div class="container">
+            <h2 data-es="Tecnologías" data-en="Technologies">Tecnologías</h2>
+            <p class="section-subtitle" data-es="Estas son algunas de las herramientas y tecnologías con las que trabajo." data-en="These are some of the tools and technologies I work with.">Estas son algunas de las herramientas y tecnologías con las que trabajo.</p>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <div class="skill-icon"><i class="fas fa-brain"></i></div>
+                    <h3>Data Science & ML</h3>
+                    <p data-es="Pandas, NumPy, Scikit-learn, TensorFlow, Matplotlib, Seaborn, Jupyter Notebooks y Google Colab. Despliegue con Flask, FastAPI y Streamlit." data-en="Pandas, NumPy, Scikit-learn, TensorFlow, Matplotlib, Seaborn, Jupyter Notebooks and Google Colab. Deployment with Flask, FastAPI and Streamlit.">Pandas, NumPy, Scikit-learn, TensorFlow, Matplotlib, Seaborn, Jupyter Notebooks y Google Colab. Despliegue con Flask, FastAPI y Streamlit.</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon"><i class="fab fa-python"></i></div>
+                    <h3>Python & Django</h3>
+                    <p data-es="Desarrollo backend robusto con Python y su framework Django." data-en="Robust backend development with Python and its Django framework.">Desarrollo backend robusto con Python y su framework Django.</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon"><i class="fab fa-aws"></i></div>
+                    <h3>Cloud (AWS)</h3>
+                    <p data-es="EC2, S3, Lambda, IAM, SageMaker. Experiencia práctica con servicios cloud." data-en="EC2, S3, Lambda, IAM, SageMaker. Hands-on experience with cloud services.">EC2, S3, Lambda, IAM, SageMaker. Experiencia práctica con servicios cloud.</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon"><i class="fas fa-database"></i></div>
+                    <h3 data-es="Bases de Datos" data-en="Databases">Bases de Datos</h3>
+                    <p data-es="MySQL, PostgreSQL, SQLite. Diseño y gestión de bases de datos relacionales." data-en="MySQL, PostgreSQL, SQLite. Design and management of relational databases.">MySQL, PostgreSQL, SQLite. Diseño y gestión de bases de datos relacionales.</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon"><i class="fab fa-html5"></i></div>
+                    <h3>Frontend</h3>
+                    <p data-es="HTML5, CSS3 y JavaScript para la creación de interfaces de usuario." data-en="HTML5, CSS3 and JavaScript for creating user interfaces.">HTML5, CSS3 y JavaScript para la creación de interfaces de usuario.</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon"><i class="fab fa-docker"></i></div>
+                    <h3 data-es="Contenerización" data-en="Containerization">Contenerización</h3>
+                    <p data-es="Docker y Docker Compose para crear entornos de desarrollo reproducibles y desplegar aplicaciones." data-en="Docker and Docker Compose to create reproducible development environments and deploy applications.">Docker y Docker Compose para crear entornos de desarrollo reproducibles y desplegar aplicaciones.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certificaciones -->
+    <section id="certificaciones" class="section-light">
+        <div class="container">
+            <h2 data-es="Certificaciones" data-en="Certifications">Certificaciones</h2>
+            <p class="section-subtitle" data-es="Mi compromiso con el aprendizaje continuo se refleja en mis certificaciones." data-en="My commitment to continuous learning is reflected in my certifications.">Mi compromiso con el aprendizaje continuo se refleja en mis certificaciones.</p>
+            <div class="certifications-grid">
+                <div class="cert-card">
+                    <div class="cert-icon"><i class="fas fa-cloud"></i></div>
+                    <h3>AWS Certified Cloud Practitioner</h3>
+                    <p data-es="Validación de conocimientos fundamentales de la nube de AWS." data-en="Validation of fundamental AWS cloud knowledge.">Validación de conocimientos fundamentales de la nube de AWS.</p>
+                </div>
+                <div class="cert-card">
+                    <div class="cert-icon"><i class="fas fa-robot"></i></div>
+                    <h3>AWS Certified AI Practitioner</h3>
+                    <p data-es="Conocimientos en servicios de IA y ML de AWS." data-en="Knowledge of AWS AI and ML services.">Conocimientos en servicios de IA y ML de AWS.</p>
+                </div>
+                <div class="cert-card">
+                    <div class="cert-icon"><i class="fas fa-shield-alt"></i></div>
+                    <h3>AWS Certified Solutions Architect</h3>
+                    <p data-es="Diseño de arquitecturas seguras y robustas en AWS." data-en="Design of secure and robust architectures in AWS.">Diseño de arquitecturas seguras y robustas en AWS.</p>
+                </div>
+            </div>
+            <div style="text-align: center;">
+                <a href="https://www.credly.com/users/liliana-garmendia-c" class="btn" target="_blank" rel="noopener noreferrer" data-es="Ver Credenciales en Credly" data-en="View Credentials on Credly">Ver Credenciales en Credly</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Proyectos -->
+    <section id="proyectos" class="section-alt">
+        <div class="container">
+            <h2 data-es="Proyectos" data-en="Projects">Proyectos</h2>
+            <p class="section-subtitle" data-es="Aquí hay algunos de mis proyectos más recientes. Puedes encontrar más en mi perfil de GitHub." data-en="Here are some of my recent projects. You can find more on my GitHub profile.">Aquí hay algunos de mis proyectos más recientes. Puedes encontrar más en mi perfil de GitHub.</p>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <img src="images/cancer_classifier.png" alt="Breast Cancer Risk Predictor Interface" class="project-image">
+                    <div class="project-content">
+                        <h3>Breast Cancer Risk Predictor</h3>
+                        <a href="https://github.com/LiliGC/advanced-breast-cancer-classifier" class="project-link" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <p data-es="Modelo de ML con predicciones interpretables y prácticas de IA responsable. Incluye análisis de características y métricas completas." data-en="ML model with interpretable predictions and responsible AI practices. Includes feature analysis and comprehensive metrics.">Modelo de ML con predicciones interpretables y prácticas de IA responsable. Incluye análisis de características y métricas completas.</p>
+                        <p class="project-tech"><strong>Tech:</strong> Python, Scikit-learn, Streamlit, Docker</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img src="images/iris_classifier.png" alt="Iris Species Classifier Interface" class="project-image">
+                    <div class="project-content">
+                        <h3>Iris Species Classifier</h3>
+                        <a href="https://github.com/LiliGC/iris-classifier-flask-streamlit" class="project-link" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <p data-es="Pipeline de despliegue completo con una API REST y un frontend interactivo." data-en="Complete deployment pipeline with a REST API and interactive frontend.">Pipeline de despliegue completo con una API REST y un frontend interactivo.</p>
+                        <p class="project-tech"><strong>Tech:</strong> Scikit-learn, Flask, Streamlit, Docker Compose</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img src="images/pycon_chile.png" alt="PyCon Chile Website" class="project-image">
+                    <div class="project-content">
+                        <h3>PyCon Chile Website</h3>
+                        <a href="https://pycon.cl/" class="project-link" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-link"></i>
+                        </a>
+                        <p data-es="Contribución al desarrollo del sitio web oficial de la conferencia Python más grande de Chile, trabajando en un equipo de desarrollo colaborativo." data-en="Contribution to the development of the official website for Chile's largest Python conference, working in a collaborative development team.">Contribución al desarrollo del sitio web oficial de la conferencia Python más grande de Chile, trabajando en un equipo de desarrollo colaborativo.</p>
+                        <p class="project-tech"><strong>Tech:</strong> Next.js, React, TypeScript</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img src="images/portada.png" alt="Lab Supplies E-commerce Platform" class="project-image">
+                    <div class="project-content">
+                        <h3>Lab Supplies E-commerce</h3>
+                        <a href="https://github.com/LiliGC/Lab-individual-heroku" class="project-link" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <p data-es="Plataforma full-stack con autenticación y acceso basado en roles." data-en="Full-stack platform with authentication and role-based access.">Plataforma full-stack con autenticación y acceso basado en roles.</p>
+                        <p class="project-tech"><strong>Tech:</strong> Django, MySQL, Bootstrap 5</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Liliana Garmendia. <span data-es="Todos los derechos reservados." data-en="All rights reserved.">Todos los derechos reservados.</span></p>
+        </div>
+    </footer>
+
+    <script>
+        let currentLang = 'es';
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'es' ? 'en' : 'es';
+            const langToggle = document.getElementById('langToggle');
+            langToggle.innerHTML = currentLang === 'es' 
+                ? '<i class="fas fa-globe"></i> EN' 
+                : '<i class="fas fa-globe"></i> ES';
+
+            // Cambiar link del CV según idioma
+            const cvLink = document.getElementById('cvLink');
+            cvLink.href = currentLang === 'es' 
+                ? 'images/cv_liliana_garmendia_es.pdf' 
+                : 'images/cv_liliana_garmendia_en.pdf';
+
+            // Actualizar todos los elementos con data-es y data-en
+            document.querySelectorAll('[data-es][data-en]').forEach(element => {
+                const text = element.getAttribute('data-' + currentLang);
+                if (element.tagName === 'A' && element.classList.contains('btn')) {
+                    element.textContent = text;
+                } else if (element.innerHTML.includes('<strong>')) {
+                    // Preservar HTML interno como <strong>
+                    element.innerHTML = text;
+                } else {
+                    element.textContent = text;
+                }
+            });
+
+            // Guardar preferencia
+            localStorage.setItem('preferredLanguage', currentLang);
+        }
+
+        // Cargar idioma guardado al iniciar
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('preferredLanguage');
+            if (savedLang && savedLang !== currentLang) {
+                toggleLanguage();
+            }
+        });
+
+        // Smooth scroll con offset para nav fijo
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#' && href.length > 1) {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        const offsetTop = target.offsetTop - 60;
+                        window.scrollTo({
+                            top: offsetTop,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
