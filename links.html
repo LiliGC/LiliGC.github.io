@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="es" style="scroll-behavior: smooth;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-es="Enlaces | Liliana Garmendia" data-en="Links | Liliana Garmendia">Enlaces | Liliana Garmendia</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6c25c9;
+            --primary-dark: #410e63;
+            --primary-light: #8240f3;
+            --secondary: #9d48e2;
+            --accent: #43bff0;
+            --text: #2f2c2c;
+            --text-light: #666;
+            --bg-light: #fafafa;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text);
+            background: linear-gradient(135deg, var(--primary-light), var(--accent));
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .links-container {
+            max-width: 600px;
+            width: 100%;
+            background: var(--white);
+            padding: 3rem;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+            text-align: center;
+        }
+
+        .lang-toggle-container {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+        }
+
+        #langToggle {
+            background: none;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .profile-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1rem;
+            border: 4px solid var(--primary);
+        }
+
+        .links-container h1 {
+            font-size: 2rem;
+            color: var(--text);
+            margin-bottom: 0.25rem;
+        }
+
+        .links-container p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-bottom: 2.5rem;
+        }
+
+        .links-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+
+        .link-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--primary);
+            color: var(--white);
+            padding: 1rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        .link-button:hover {
+            background: var(--primary-dark);
+            transform: scale(1.03);
+        }
+
+        .link-button i {
+            margin-right: 1rem;
+            font-size: 1.4rem; /* Ajuste de tamaño para mejor proporción */
+            width: 1.5em; /* Ancho fijo para alinear texto */
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="links-container">
+        <div class="lang-toggle-container">
+            <button id="langToggle" onclick="toggleLanguage()">
+                <i class="fas fa-globe"></i> EN
+            </button>
+        </div>
+        <img src="images/foto2.jpg" alt="Liliana Garmendia" class="profile-image">
+        <h1>Liliana Garmendia</h1>
+        <p data-es="Data Scientist | Bioquímica" data-en="Data Scientist | Biochemist">Data Scientist | Bioquímica</p>
+        <div class="links-list">
+            <a href="https://www.linkedin.com/in/liliana-garmendia-c" class="link-button" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-linkedin-in"></i> <span data-es="LinkedIn" data-en="LinkedIn">LinkedIn</span>
+            </a>
+            <a href="https://github.com/LiliGC" class="link-button" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-github"></i> <span data-es="GitHub" data-en="GitHub">GitHub</span>
+            </a>
+            <a href="mailto:liliana.garmendia.c@gmail.com" class="link-button">
+                <i class="fas fa-envelope"></i> <span data-es="Email" data-en="Email">Email</span>
+            </a>
+            <a href="https://www.credly.com/users/liliana-garmendia-c" class="link-button" target="_blank" rel="noopener noreferrer">
+                <i class="fas fa-award"></i> <span data-es="Credenciales" data-en="Credentials">Credenciales</span>
+            </a>
+            <a href="index.html" class="link-button" rel="noopener noreferrer">
+                <i class="fas fa-briefcase"></i> <span data-es="Portafolio" data-en="Portfolio">Portafolio</span>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        let currentLang = 'es';
+
+        function updateContent(lang) {
+            document.documentElement.lang = lang;
+            const langToggle = document.getElementById('langToggle');
+            langToggle.innerHTML = lang === 'es' 
+                ? '<i class="fas fa-globe"></i> EN' 
+                : '<i class="fas fa-globe"></i> ES';
+
+            document.querySelectorAll('[data-es][data-en]').forEach(element => {
+                element.innerHTML = element.getAttribute('data-' + lang);
+            });
+        }
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'es' ? 'en' : 'es';
+            localStorage.setItem('preferredLanguage', currentLang);
+            updateContent(currentLang);
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('preferredLanguage');
+            currentLang = savedLang || 'es';
+            updateContent(currentLang);
+        });
+    </script>
+</body>
+</html>
